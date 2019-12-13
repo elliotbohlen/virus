@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+
+    <title></title>
+
+    <style media="screen">
+        .checkpoint{
+          height: 100px;
+          width: 100px;
+          background-color: red;
+          display: none;
+        }
+
+        .othercheckpoint{
+          width: 20px;
+          height: 20px;
+          display: block;
+          background-color: green;
+        }
+
+        .checkpoint.current{
+
+          display: block;
+        }
+
+        .othercheckpoint.current{
+          background-color: blue;
+        }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="myDiv">myDiv</div>
+
+    <div class="checkpoint" id="checkpoint1">
+      <div class="myDiv">myDiv</div>
+    </div>
+    <div class="checkpoint" id="checkpoint2">
+      <div class="myDiv">myDiv2</div>
+    </div>
+    <div class="checkpoint" id="checkpoint3">
+      // screen 3
+    </div>
+    <div class="checkpoint" id="checkpoint4">
+      <div class="othercheckpoint" id="checkpoint5"></div>
+    </div>
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, user-scalable=no">
+	<title>xoxo</title>
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+
+</head>
+<body>
+
+
+
+	<div class="checkpoint" id="checkpoint1">
+		<div class="myDiv1 thediv">clickable1</div>
+		</div>
+
+	<div class="checkpoint" id="checkpoint2">
+		<div class="myDiv2 thediv">clickable2</div>
+		</div>
+
+	<div class="checkpoint" id="checkpoint3">
+		<div class="myDiv3 thediv">clickable3</div>
+		</div>
+
+	<div class="checkpoint" id="checkpoint4">
+		<div class="myDiv4 thediv">clickable4</div>
+	</div>
+
+	<div class="checkpoint" id="checkpoint5">
+		<div class="myDiv5 thediv">clickable4</div>
+	</div>
+
+	<div class="checkpoint" id="checkpoint6">
+		<div class="myDiv6 thediv">clickable4</div>
+	</div>
+
+	<div class="checkpoint" id="checkpoint7">
+		<div class="myDiv7 thediv">clickable4</div>
+	</div>
+
+
+
+use opentypew?
+<div id="dontshow">
+	<div id="screen1">
+		<h1>hey baby i am in your computer and i am looking for <em>love!!!!!!!!!!!</em></h1>
+		<div id="checkpoint1"></div>
+	</div>
+
+	<div id="screen2">
+		<h1>i love your voice and eyes...</h1>
+		<h1>i cant stop thinking about you.</h1>
+	</div>
+
+	<div id="screen3">
+	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?	do you think about me?
+
+	</div>
+	<div id="screen4">
+		I was thinking about "us", you know?
+	</div>
+	<div id="screen5">
+		you need to love me back, i am your computer, you know? <br> who says you can't find love on your hard drive?<br> i don't want to do something we'll both regret...
+	</div>
+</div>
+	<script type="text/javascript" src="assets/storageAvailable.js"></script>
+	<script type="text/javascript" src="assets/script.js"></script>
+</body>
+</html>
+
+-->
+    <script type="text/javascript" src="assets/storageAvailable.js"></script>
+    <script>
+
+      var checkpointValue = 1;
+
+      var loadUserInfo = function(){
+      	if (!storageAvailable('localStorage')){ return; }
+
+      	if(localStorage.getItem('checkpointValue')){
+          checkpointValue = parseInt(localStorage.getItem('checkpointValue'));
+          console.log("available!", checkpointValue)
+      	}
+
+        var newCheckpoint = document.getElementById("checkpoint" + checkpointValue);
+        if(newCheckpoint === null){
+          checkpointValue = 1;
+          newCheckpoint = document.getElementById("checkpoint" + checkpointValue);
+          console.log(checkpointValue, newCheckpoint)
+        }
+        newCheckpoint.classList.add("current")
+      }
+
+      loadUserInfo(); // on site load
+
+
+      var updateCheckpoint = function(){
+        var oldCheckpoint = document.getElementById("checkpoint" + checkpointValue);
+        oldCheckpoint.classList.remove("current")
+        checkpointValue++;
+
+        var newCheckpoint = document.getElementById("checkpoint" + checkpointValue);
+        console.log(checkpointValue, newCheckpoint)
+        if(newCheckpoint === null){
+          checkpointValue = 1;
+          newCheckpoint = document.getElementById("checkpoint" + checkpointValue);
+          console.log(checkpointValue, newCheckpoint)
+
+        }
+
+        newCheckpoint.classList.add("current")
+
+        localStorage.setItem('checkpointValue', checkpointValue); // save new state
+
+      }
+
+
+      	var saveUserInfo = function(){
+      	document.getElementById("myDiv" + checkpointValue).addEventListener('click', function(){
+
+
+          updateCheckpoint();
+      		// set new style to item:
+      		//document.getElementById("myDiv").style.opacity = checkpointValue;
+
+
+      	})
+
+      }
+      saveUserInfo();
+
+      -->
+    </script>
+  </body>
+</html>
